@@ -6,13 +6,17 @@ import com.getarrays.server.repo.ServerRepo;
 import com.getarrays.server.service.ServerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.Servlet;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.util.Collection;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -42,25 +46,31 @@ public class ServerServiceImpl implements ServerService {
 
     @Override
     public Collection<Server> list(int limit) {
-        return null;
+        log.info("Fetching all servers");
+        return serverRepo.findAll(PageRequest.of(0,limit)).toList();
     }
 
     @Override
     public Server get(Long id) {
-        return null;
+        log.info("Fetching sserver by id: {}", id);
+        return serverRepo.findById(id).get();
     }
 
     @Override
     public Server update(Server server) {
-        return null;
+        log.info("Updating server: {}", server.getName());
+        return serverRepo.save(server);
     }
 
     @Override
     public Boolean delete(Long id) {
-        return null;
+        log.info("Deleting server by ID: {}", id);
+        serverRepo.deleteById(id);
+        return Boolean.TRUE;
     }
 
     private String setServerImageUrl(){
-        return null;
+        String[] imageNames = { "server1.png", "server2.png", "server3.png", "server4.png"};
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/server/image/" + imageNames[new Random().nextInt(4)]).toUriString();
     }
 }
