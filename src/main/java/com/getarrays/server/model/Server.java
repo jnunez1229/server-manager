@@ -21,6 +21,8 @@ public class Server {
         this.status = status;
     }
 
+
+
     public Long getId() {
         return id;
     }
