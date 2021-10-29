@@ -1,26 +1,32 @@
 package com.getarrays.server.model;
 
 import com.getarrays.server.enumeration.Status;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Server {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(unique = true)
+    @NotEmpty(message = "IP Address cannot be empty or null")
     private String ipAddress;
     private String name;
     private String memory;
     private String type;
     private String imageUrl;
     private Status status;
-
-    public Server(Long id, String ipAddress, String name, String memory, String type, String imageUrl, Status status) {
-        this.id = id;
-        this.ipAddress = ipAddress;
-        this.name = name;
-        this.memory = memory;
-        this.type = type;
-        this.imageUrl = imageUrl;
-        this.status = status;
-    }
-
 
 
     public Long getId() {

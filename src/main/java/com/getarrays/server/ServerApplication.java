@@ -3,12 +3,14 @@ package com.getarrays.server;
 import com.getarrays.server.enumeration.Status;
 import com.getarrays.server.model.Server;
 import com.getarrays.server.repo.ServerRepo;
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableEncryptableProperties
 public class ServerApplication {
 
 	public static void main(String[] args) {
