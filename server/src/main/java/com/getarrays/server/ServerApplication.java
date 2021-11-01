@@ -20,7 +20,7 @@ public class ServerApplication {
 	@Bean
 	CommandLineRunner run(ServerRepo serverRepo){
 		return args -> {
-			serverRepo.save(new Server(null, "192.192.1.192", "Macbook", "64GB", "Personal Notebook",
+			serverRepo.save(new Server(null, "192.168.1.184", "Macbook", "64GB", "Personal Notebook",
 					"http://localhost:8080/server/image/server1.png", Status.SERVER_UP));
 			serverRepo.save(new Server(null, "192.192.1.10", "Ubuntu Linux", "64GB", "Personal PC",
 					"http://localhost:8080/server/image/server3.png", Status.SERVER_DOWN));
